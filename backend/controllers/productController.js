@@ -1,4 +1,5 @@
 const Product = require('../models/productModel')
+const mongoose = require('mongoose')
 
 
 const createProduct = async (req, res) => {
@@ -166,6 +167,93 @@ catch(error){
 
 }
 
+const getSingleProduct = async (req,res) =>{
+  const {id} = req.params
+
+  if(!id || !mongoose.Types.ObjectId.isValid(id)){
+    return res.status(400).json({ message: "Invalid user ID format" });
+  }
+
+  try{
+    const findProduct = await Product.findById({_id:id})
+
+    if(!findProduct){
+      return res.status(400).json({message: "User not found"})
+  }
+
+  return res.status(200).json(findProduct)
+  }
+  catch (error){
+    console.error(error); 
+
+    return res.status(500).json({ message: "Internal server error" });
+
+  }
+}
+
+const updateProduct = async (req,res) =>{
+  const {id} = req.params
+
+  const fields = req.body
+
+  if(!id || !mongoose.Types.ObjectId.isValid(id)){
+    return res.status(400).json({ message: "Invalid product ID format" });
+  }
+
+  try{
+    if (Object.keys(fields).length === 0) {
+      return res.status(400).json({ message: "No fields provided to update" });
+    }
 
 
-  module.exports = {createProduct, createBulkProducts, getAllProduct}
+
+    const findProduct = await Product.findOneAndUpdate({_id:id},fields,{ new: true, runValidators: true })
+
+    if(!findProduct){
+      return res.status(404).json({message: 'Failed to update Product'})
+    }
+
+    return res.status(201).json({message: 'Product updated successfully', data:findProduct})
+
+  }
+  catch(error){
+    return res.status(500).json({
+      message: "An error occurred while updating the product",
+      error: process.env.NODE_ENV === "development" ? error.message : undefined,
+    })
+  }
+
+
+}
+
+const deleteProduct = async(req,res)=>{
+  const {id} = req.params
+
+  if(!id || !mongoose.Types.ObjectId.isValid(id)){
+    return res.status(400).json({ message: "Invalid user ID format" });
+  }
+
+  try{
+    
+    const deleteProduct = await Product.findByIdAndDelete(id)
+
+    if(!deleteProduct){
+      return res.status(404).json({message: 'Failed to deleteProduct'})
+    }
+
+    return res.status(201).json({message: 'Product deleted successfully', data:deleteProduct})
+
+  }
+  catch(error){
+    return res.status(500).json({
+      message: "An error occurred while deleting the product",
+      error: process.env.NODE_ENV === "development" ? error.message : undefined,
+    })
+
+
+  }
+}
+
+
+
+  module.exports = {createProduct, createBulkProducts, getAllProduct,getSingleProduct,updateProduct,deleteProduct,updateProduct}

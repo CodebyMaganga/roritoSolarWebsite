@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+body {
+  margin: 0;
+ 
+}
+
+
+.tabs button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tabs button.active {
+  background-color: #007bff;
+  color: white;
+  transform: translateY(-5px); /* Lift the active tab */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow to simulate lift */
+}
+
+.tabs button:not(.active):hover {
+  transform: translateY(-3px); /* Slight lift on hover for inactive tabs */
+}
+
+.form-content {
+  margin-top: 20px;
+}
+
+
+
