@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 // const apiUrl = process.env.REACT_APP_API_URL;
 
-
 const LoginForm = () => {
     const [phone, setPhone] = useState('')
     const [password, setPassword] = useState('')
@@ -41,7 +40,8 @@ const LoginForm = () => {
             const errorData = await response.json();
             setError(errorData.message || 'Something went wrong');
           }
-
+        //   setPassword("")
+        //   setPhone("")
   
         } catch (err) {
           setError(err.response?.data?.message || 'Something went wrong');

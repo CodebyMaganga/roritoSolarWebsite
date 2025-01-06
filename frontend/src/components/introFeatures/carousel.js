@@ -45,7 +45,7 @@ const IntroCarousel = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="intro-slide h-screen relative bg-[#FFEA00]">
+          <div className="intro-slide h-screen relative bg-[#FFD000]">
         
             <div className="relative z-10 flex flex-col justify-center items-center  text-center text-white h-full">
             <Tabs tabs={tabData} />
