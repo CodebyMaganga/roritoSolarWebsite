@@ -51,7 +51,7 @@ const Homepage = () => {
           <Card
             title={"Outdoor Solar Lamps"}
             content={"Buy discounted solar lamps here"}
-            imgSrc={"/solarlantern.webp"}
+            imgSrc={"/solar lantern 2.webp"}
           />
 
           <Card2
