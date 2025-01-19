@@ -10,11 +10,17 @@ import { FaPhoneVolume } from "react-icons/fa6";
 import { GiFamilyTree } from "react-icons/gi";
 import { IoMdContact } from "react-icons/io";
 import { FaShoppingCart } from "react-icons/fa";
+import '../featureProducts.css'
+import MobileNav from "../components/mobileNav";
+import { useNavigate } from "react-router-dom";
 
 const Homepage = () => {
+
+  const navigate = useNavigate()
   return (
     <>
       <div className="bg-white relative h-[3500px]">
+      <MobileNav />
       <FaShoppingCart className="absolute text-black text-2xl top-4 right-8"/>
       <IoMdContact className="absolute text-black text-2xl top-4 right-16" />
       
@@ -46,12 +52,13 @@ const Homepage = () => {
             </label>
           </div>
         </div>
+
         <HomeCasourel />
         <div className="mt-16 grid place-content-center place-items-center gap-6">
           <Card
             title={"Outdoor Solar Lamps"}
             content={"Buy discounted solar lamps here"}
-            imgSrc={"/solar lantern 2.webp"}
+            imgSrc={"/solarlantern2.webp"}
           />
 
           <Card2
@@ -62,8 +69,8 @@ const Homepage = () => {
           />
         </div>
 
-        <div className="mt-8">
-          <p className="text-black text-xl text-center">Featured Items</p>
+        <div className="mt-8 border py-4 bg-black text-white">
+          <p className=" text-xl text-center">Featured Items</p>
 
           <div>
             <ProductCasourel />
@@ -88,18 +95,24 @@ const Homepage = () => {
   
 
         <div className="mt-4 border h-[20em] py-4 text-black">
+          <div className="py-4 border mb-4 shadow-xl bg-black text-white">
           <p className="text-center">Shop by Category</p>
+          </div>
+         
 
           <div className="flex flex-col gap-7">
-            <div className="h-[5em] border">
+            <div onClick={()=>navigate(`/category/Batteries`)} className="h-[5em] border relative group">
+              <p className="text-center text-3xl text-[#FFD000] font-bold absolute top-[100px] left-[1em] z-30">Affordable Batteries</p>
               <img src="/batteryGroup.jpg" alt="battery" />
             </div>
 
-            <div className="h-[5em] border mt-[14em]">
+            <div onClick={()=>navigate(`/category/Inverters`)}  className="h-[5em] border relative mt-[14em] group">
+            <p className="text-center text-3xl text-[#FFD000] font-bold absolute top-[100px] left-[2em] z-30">Solar Inverters</p>
               <img src="/inverterGroup.webp" alt="battery" />
             </div>
 
-            <div className="h-[4em] border-b mt-[5em]">
+            <div  onClick={()=>navigate(`/category/Cables`)} className="h-[4em] relative border-b mt-[14em] group">
+            <p className="text-center text-3xl text-[#FFD000] font-bold absolute top-[100px] left-[4em] z-30">UTP cables</p>
               <img
                 src="/inverter2.png"
                 alt="battery"
@@ -108,7 +121,7 @@ const Homepage = () => {
             </div>
           </div>
         </div>
-        <div className="mt-[38em] h-[27em] bg-base-200">
+        <div className="mt-[48em] h-[27em] bg-base-200">
           <div className="collapse collapse-plus bg-base-200">
             <input type="radio" name="my-accordion-3" defaultChecked />
             <div className="collapse-title text-xl font-medium">

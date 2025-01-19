@@ -3,6 +3,7 @@ import WebComponent from "./components/webComponent";
 import MobileComponent from "./components/mobileComponent";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Homepage from "./pages/Homepage";
+import BatteryCategory from "./pages/categories/batteries";
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
       <Routes>
         <Route path="/" element={isLargeScreen ? <WebComponent /> : <MobileComponent />} />
         <Route path="/homepage" element={<Homepage />} />
+        <Route path="/category/:name" element={<BatteryCategory />} />
       </Routes>
         
     </div>

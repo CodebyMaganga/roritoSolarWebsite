@@ -1,5 +1,5 @@
 import { MdOutlineArrowRightAlt } from "react-icons/md";
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 
 
 const Card2 = ({ title, content, imgSrc }) => {
@@ -7,12 +7,7 @@ const Card2 = ({ title, content, imgSrc }) => {
     <>
       <div className="card h-[340px] relative ml-1 w-96 shadow-xl">
         <figure>
-          <LazyLoadImage src={imgSrc} alt="solar lantern"
-          effect="blur"   wrapperProps={{
-            // If you need to, you can tweak the effect transition using the wrapper style.
-            style: {transitionDelay: "1s"}
-          }}
-          />
+          <img src={imgSrc} alt="solar lantern"/>
         </figure>
         <div className="absolute text-black top-[100px] left-4">
           <h2 className="card-title text-[#FFDD00] text-3xl">
