@@ -54,7 +54,7 @@ const MobileNav = () => {
         <div className="pt-16 px-4 relative">
           <nav className="space-y-4">
             <a href="#" className="block py-2 hover:text-yellow-500">Home</a>
-            <a href="#" className="block py-2 hover:text-yellow-500">Products</a>
+            <a onClick={()=>navigate('/all-products')} className="block py-2 hover:text-yellow-500">Products</a>
             <a href="#" className="block py-2 hover:text-yellow-500">Categories</a>
             <a href="#" className="block py-2 hover:text-yellow-500">About Us</a>
             <a href="#" className="block py-2 hover:text-yellow-500">Contact</a>

@@ -1,7 +1,10 @@
-
+import { useSelector, useDispatch } from 'react-redux';
+import { addItem,removeItem } from '../../store/cartSlice';
 
 
 const ProductCasourel = ()=>{
+  const cartItems = useSelector(state => state.cart.items);
+  const dispatch = useDispatch();
 
     return(
         <div className="carousel mt-4 w-full h-[35%] ">
@@ -13,7 +16,7 @@ const ProductCasourel = ()=>{
       <div className="space-y-4 py-2 ml-8 text-white  mt-4">
       <p className="text-2xl font-bold">Solar Batteries</p>
       <p className="font-semibold">ksh2499</p>
-      <button className="bg-[#FFD000] p-4 rounded-lg">Add to cart</button>
+      <button onClick={() => dispatch(addItem())} className="bg-[#FFD000] p-4 rounded-lg">Add to cart</button>
       </div>
      
     <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">

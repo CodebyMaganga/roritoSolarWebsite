@@ -6,12 +6,12 @@ import { addItem } from "../../store/cartSlice";
 import { FaShoppingCart } from "react-icons/fa";
 
 
-const BatteryCategory = () =>{
+const CableCategory = () =>{
 
     const cartItems = useSelector((state) => state.cart.items);
     const dispatch = useDispatch();
 
-    const [allBatteries, setBatteries] = useState()
+    const [allCables, setCable] = useState()
     const [categ, setCateg] = useState()
     const navigate = useNavigate()
     const {name} = useParams()
@@ -31,11 +31,11 @@ const BatteryCategory = () =>{
                     }
                 });
                 const data = await resp.json();
-                const batteries = data?.allProducts.filter(item => item.category === name);
-                console.log(`all batteries--->`, batteries);
-                setBatteries(batteries);
+                const Cable = data?.allProducts.filter(item => item.category === name);
+                console.log(`all Cable--->`, Cable);
+                setCable(Cable);
             } catch (error) {
-                console.error('Error fetching batteries:', error);
+                console.error('Error fetching Cable:', error);
             }
         }
 
@@ -54,7 +54,7 @@ const BatteryCategory = () =>{
             </div>
          
             <div className="absolute top-4 right-8 flex items-center">
-                <FaShoppingCart onClick={()=> navigate('/cart')} className="text-black text-3xl relative" />
+                <FaShoppingCart className="text-black text-3xl relative" />
                 {totalCartQuantity > 0 && (
                     <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                         {totalCartQuantity}
@@ -64,23 +64,23 @@ const BatteryCategory = () =>{
         <p className="text-center text-black font-bold text-2xl my-3">{name}</p>
         {
             
-            allBatteries?.length ? allBatteries.map((battery,idx)=>(
-                <div key={idx} className="border h-[40em]  ">
+            allCables?.length ? allCables.map(Cable=>(
+                <div className="border h-[40em]  ">
                     <div className="h-[60%] border">
-                        <img src={battery.images[0]} alt="Product" />
+                        <img src={Cable.images[0]} alt="Product" />
                     </div>
                     <div className="mt-4 ml-4"> 
                     <div>
-                        {battery && battery.tags.map((task,idx)=>(
+                        {Cable && Cable.tags.map((task,idx)=>(
                             <div className="bg-slate-500 w-1/2 my-2 px-4 text-white rounded-2xl ">
                             <p   key={idx}>{task}</p>
                             </div>
                         ))}
                     </div>
                     <div className="ml-4 mt-5">
-                    <p className="text-black font-bold ">{battery.name}</p>
-                    <p>ksh{battery.price}</p>
-                    <button onClick={() => dispatch(addItem(battery))} className="bg-[#FFD000] p-4 mt-4 rounded-lg">Add To Cart</button>
+                    <p className="text-black font-bold ">{Cable.name}</p>
+                    <p>ksh{Cable.price}</p>
+                    <button onClick={() => dispatch(addItem(Cable))} className="bg-[#FFD000] p-4 mt-4 rounded-lg">Add To Cart</button>
                    
                     </div>
                     </div>
@@ -106,4 +106,4 @@ const BatteryCategory = () =>{
     )
 }
 
-export default BatteryCategory
+export default CableCategory

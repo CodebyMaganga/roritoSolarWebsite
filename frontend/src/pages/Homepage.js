@@ -13,15 +13,28 @@ import { FaShoppingCart } from "react-icons/fa";
 import '../featureProducts.css'
 import MobileNav from "../components/mobileNav";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
 const Homepage = () => {
+
+  const cartItems = useSelector((state) => state.cart.items);
+  const dispatch = useDispatch();
+
+  const totalCartQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   const navigate = useNavigate()
   return (
     <>
       <div className="bg-white relative h-[3500px]">
       <MobileNav />
-      <FaShoppingCart className="absolute text-black text-2xl top-4 right-8"/>
+      <div className="absolute top-4 right-8 flex items-center">
+                <FaShoppingCart onClick={()=> navigate('/cart')} className="text-black text-2xl relative" />
+                {totalCartQuantity > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                        {totalCartQuantity}
+                    </span>
+                )}
+            </div>
       <IoMdContact className="absolute text-black text-2xl top-4 right-16" />
       
         <div className="h-[10em] bg-[#FFD000] flex flex-col items-center justify-center">

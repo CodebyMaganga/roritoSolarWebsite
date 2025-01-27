@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast, Bounce } from 'react-toastify';
+import { PiSolarPanelBold } from "react-icons/pi";
 
 // const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -34,11 +36,32 @@ const LoginForm = () => {
           console.log('response',response)
 
           if (response.ok) {
-            console.log('login succesful')
-            console.log('Cookie present:', document.cookie);
+            toast.success('Login Successful', {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: false,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+              transition: Bounce,
+              });
             navigate('/homepage')
           } else {
+            toast.error('Invalid Credentials', {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: false,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+              transition: Bounce,
+              });
             const errorData = await response.json();
+
             setError(errorData.message || 'Something went wrong');
           }
         //   setPassword("")
@@ -53,8 +76,10 @@ const LoginForm = () => {
   return (
     <>
     <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 ">
-    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-      <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company" />
+      <ToastContainer />
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm grid place-content-center place-items-center">
+    <PiSolarPanelBold className='text-6xl text-black' />
+      <p className='text-black  font-bold '>Rorito Solar Solutions</p>
       <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Sign in to your account</h2>
     </div>
   
@@ -95,8 +120,9 @@ const SignupForm = () => {
   return (
    <>
     <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-      <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company" />
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm grid place-items-center">
+    <PiSolarPanelBold className='text-6xl text-black' />
+      <p className='text-black  font-bold '>Rorito Solar Solutions</p>
       <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Register</h2>
     </div>
   
