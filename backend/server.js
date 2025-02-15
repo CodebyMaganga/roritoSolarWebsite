@@ -13,7 +13,13 @@ const cors = require('cors');
 
 
 const app = express()
-app.use(cors());
+
+app.use(cors({
+    origin: 'https://rorito-solar-website.vercel.app/', // Replace with your frontend origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true, // If you need to allow cookies or credentials
+  }));
 
 
 
