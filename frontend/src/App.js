@@ -28,7 +28,7 @@ function App() {
           return;
         }
         // Call your resize handler or additional logic here
-        console.log("Element resized:", entries[0].contentRect);
+       
       });
     };
 

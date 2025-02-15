@@ -8,12 +8,13 @@ import { useNavigate } from 'react-router-dom';
 
 const MobileNav = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const api = process.env.REACT_APP_API_URL
 
   const navigate = useNavigate()
 
   const handleLogout = async () => {
     try {
-        const response = await fetch('/auth/logout', {
+        const response = await fetch(`${api}/auth/logout`, {
             method: 'POST',
             credentials: 'include'
         });

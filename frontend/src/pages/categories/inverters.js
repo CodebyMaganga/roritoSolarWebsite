@@ -11,6 +11,8 @@ const InverterCategory = () =>{
     const cartItems = useSelector((state) => state.cart.items);
     const dispatch = useDispatch();
 
+    const api = process.env.REACT_APP_API_URL
+
     const [allInverters, setInverter] = useState()
     const [categ, setCateg] = useState()
     const navigate = useNavigate()
@@ -23,7 +25,7 @@ const InverterCategory = () =>{
 
         const fetchCategory = async () => {
             try {
-                const resp = await fetch(`/products/all`, {
+                const resp = await fetch(`${api}/products/all`, {
                     credentials: 'include',
                     headers: {
                         'Content-Type': 'application/json',
@@ -32,7 +34,7 @@ const InverterCategory = () =>{
                 });
                 const data = await resp.json();
                 const Inverter = data?.allProducts.filter(item => item.category === name);
-                console.log(`all Inverter--->`, Inverter);
+              
                 setInverter(Inverter);
             } catch (error) {
                 console.error('Error fetching Inverter:', error);
@@ -43,7 +45,7 @@ const InverterCategory = () =>{
         setCateg(name)
 
 
-        console.log('name--->',categ)
+        
         
     },[name])
 

@@ -16,7 +16,7 @@ const Cart = () => {
     0
   );
 
-  console.log("cartItems", cartItems);
+
 
   return (
     <div className="bg-white h-screen">

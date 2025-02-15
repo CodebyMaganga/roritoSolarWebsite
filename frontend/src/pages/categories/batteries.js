@@ -7,6 +7,7 @@ import { FaShoppingCart } from "react-icons/fa";
 
 
 const BatteryCategory = () =>{
+    const api = process.env.REACT_APP_API_URL
 
     const cartItems = useSelector((state) => state.cart.items);
     const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const BatteryCategory = () =>{
 
         const fetchCategory = async () => {
             try {
-                const resp = await fetch(`/products/all`, {
+                const resp = await fetch(`${api}/products/all`, {
                     credentials: 'include',
                     headers: {
                         'Content-Type': 'application/json',
@@ -32,7 +33,7 @@ const BatteryCategory = () =>{
                 });
                 const data = await resp.json();
                 const batteries = data?.allProducts.filter(item => item.category === name);
-                console.log(`all batteries--->`, batteries);
+               
                 setBatteries(batteries);
             } catch (error) {
                 console.error('Error fetching batteries:', error);
@@ -43,7 +44,7 @@ const BatteryCategory = () =>{
         setCateg(name)
 
 
-        console.log('name--->',categ)
+    
         
     },[name])
 

@@ -7,20 +7,21 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 const AllProducts = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const api = process.env.REACT_APP_API_URL
 
   const navigate = useNavigate()
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/products/all', {
+        const response = await fetch(`${api}/products/all`, {
           credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
           },
         });
         const data = await response.json();
-        console.log('al prod-->', data);
+       
         setItems(data.allProducts);
       } catch (error) {
         console.error('Error fetching data:', error);

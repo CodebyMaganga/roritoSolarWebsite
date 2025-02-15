@@ -11,6 +11,8 @@ const CableCategory = () =>{
     const cartItems = useSelector((state) => state.cart.items);
     const dispatch = useDispatch();
 
+    const api = process.env.REACT_APP_API_URL
+
     const [allCables, setCable] = useState()
     const [categ, setCateg] = useState()
     const navigate = useNavigate()
@@ -23,7 +25,7 @@ const CableCategory = () =>{
 
         const fetchCategory = async () => {
             try {
-                const resp = await fetch(`/products/all`, {
+                const resp = await fetch(`${api}/products/all`, {
                     credentials: 'include',
                     headers: {
                         'Content-Type': 'application/json',
@@ -32,7 +34,7 @@ const CableCategory = () =>{
                 });
                 const data = await resp.json();
                 const Cable = data?.allProducts.filter(item => item.category === name);
-                console.log(`all Cable--->`, Cable);
+               
                 setCable(Cable);
             } catch (error) {
                 console.error('Error fetching Cable:', error);
@@ -43,7 +45,7 @@ const CableCategory = () =>{
         setCateg(name)
 
 
-        console.log('name--->',categ)
+
         
     },[name])
 

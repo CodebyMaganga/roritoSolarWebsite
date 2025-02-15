@@ -10,11 +10,12 @@ const LoginForm = () => {
     const [password, setPassword] = useState('')
     const [error, setError] = useState(null);
 
+    const api = process.env.REACT_APP_API_URL
+
     const navigate = useNavigate()
 
 
-    console.log('phone',phone)
-    console.log('password',password)
+ 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -23,7 +24,7 @@ const LoginForm = () => {
             password
         }
         try {
-          const response = await fetch(`/auth/login`, {
+          const response = await fetch(`${api}/auth/login`, {
             method: 'POST',
             body: JSON.stringify(body),
             headers: {
@@ -33,7 +34,7 @@ const LoginForm = () => {
             
 
           });
-          console.log('response',response)
+          
 
           if (response.ok) {
             toast.success('Login Successful', {
