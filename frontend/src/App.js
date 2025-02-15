@@ -7,6 +7,8 @@ import BatteryCategory from "./pages/categories/batteries";
 import { debounce } from "lodash";
 import AllProducts from "./pages/allProducts";
 import Cart from "./pages/cart";
+import Checkout from "./pages/checkout";
+import ShippingDetails from "./pages/shippingDetails";
 
 
 function App() {
@@ -66,6 +68,8 @@ function App() {
         <Route path="/all-products" element={<AllProducts />} />
         <Route path="/category/:name" element={<BatteryCategory />} />
         <Route path='/cart' element={<Cart />}/>
+        <Route path="/checkout" element={<Checkout />}/>
+        <Route path='/shippingDetails' element={<ShippingDetails />}/>
       </Routes>
         
     </div>
