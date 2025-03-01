@@ -15,7 +15,7 @@ const cors = require('cors');
 const app = express()
 
 app.use(cors({
-    origin: 'http://rorito-solar-website.vercel.app', // Replace with your frontend URL
+    origin: 'https://rorito-solar-website.vercel.app/', // Replace with your frontend URL
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true, // Allow credentials (cookies, authorization headers)
