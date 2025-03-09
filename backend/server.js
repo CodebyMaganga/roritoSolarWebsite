@@ -14,15 +14,25 @@ const cors = require('cors');
 
 const app = express()
 
+app.use((req, res, next) => {
+  
+    res.header("Access-Control-Allow-Credentials", "true");
+    next();
+});
+
 app.use(cors({
-    origin: 'https://rorito-solar-website.vercel.app/', // Replace with your frontend URL
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true, // Allow credentials (cookies, authorization headers)
-  }));
+    origin: "https://rorito-solar-website.vercel.app/", // Allow requests from frontend
+    credentials: true, // Allow cookies, authentication headers
+    methods: "GET,POST,PUT,DELETE",
+    allowedHeaders: "Content-Type,Authorization"
+}));
 
 
-  app.options('*', cors());
+
+
+
+
+//   app.options('*', cors());
 app.use(express.json())
 app.use(cookieParser());
 
